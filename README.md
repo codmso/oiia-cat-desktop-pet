@@ -1,8 +1,31 @@
 # Desktop Pet
 
-A 3D low-poly cat that lives on your Mac desktop. Wanders around, looks at your cursor, and spins (with the OIIA meme music) when you click it.
+A 3D low-poly cat that lives on your desktop. Wanders around, looks at your cursor, and spins (with the OIIA meme music) when you click it or type.
 
-## Setup
+## Install
+
+### macOS
+
+Download `Desktop.Pet-1.0.0-arm64.dmg` from the [latest release](https://github.com/codmso/oiia-cat-desktop-pet/releases/latest), drag the app to **Applications**, then run this **once** in Terminal to clear the Gatekeeper quarantine flag:
+
+```bash
+xattr -cr "/Applications/Desktop Pet.app"
+```
+
+> Why? The app isn't notarized (Apple Developer Program costs $99/yr). Without that command, macOS shows a misleading "Desktop Pet is damaged" warning. The app is fine — `xattr` just removes the "downloaded from internet" flag.
+
+### Windows
+
+**Option A — Scoop (recommended, no warnings):**
+
+```powershell
+scoop bucket add codmso https://github.com/codmso/scoop-bucket
+scoop install oiia-cat-desktop-pet
+```
+
+**Option B — Direct download:** Grab `Desktop.Pet.Setup.1.0.0.exe` (installer) or `Desktop.Pet.1.0.0.exe` (portable) from the [latest release](https://github.com/codmso/oiia-cat-desktop-pet/releases/latest). Windows SmartScreen will warn that the publisher is unknown — click **More info → Run anyway**.
+
+### Build from source
 
 ```bash
 npm install
@@ -16,7 +39,7 @@ npm start
 - The cat idles, walks, sits, and yawns on its own.
 - Hover: the cat turns its head toward your cursor.
 - Click: spin animation + meme music. Big happiness boost.
-- **Type anywhere on your computer**: the cat spins while you type. The faster you type, the faster it spins. Spinning stops ~1s after your last keystroke. (Silent — only clicks play music.)
+- **Type anywhere on your computer**: the cat spins while you type. The faster you type, the faster the spin — and the music speeds up too (slow typing = slowed music, fast typing = normal speed). Spinning stops ~1s after your last keystroke.
 - Drag: grab the cat and move it anywhere on screen.
 - Mood: happiness slowly decays over time. Petting/clicking restores it. Sad cat looks desaturated and dim; happy cat is bright and saturated.
 
