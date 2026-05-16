@@ -54,6 +54,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      SCOOP_BUCKET_TOKEN: ${{ secrets.SCOOP_BUCKET_TOKEN }}
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -74,8 +76,6 @@ jobs:
 
       - name: Trigger Scoop bucket update
         if: success() && env.SCOOP_BUCKET_TOKEN != ''
-        env:
-          SCOOP_BUCKET_TOKEN: ${{ secrets.SCOOP_BUCKET_TOKEN }}
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           curl -sf -X POST \
